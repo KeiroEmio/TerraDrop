@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-// 导入 Chainlink 合约接口 (根据实际使用的 Chainlink 服务导入)
 import "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/shared/interfaces/LinkTokenInterface.sol";
 import "@chainlink/contracts/src/v0.8/shared/access/ConfirmedOwner.sol"; // 用于 Keeper 兼容;

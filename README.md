@@ -1,47 +1,55 @@
-平台会监测全球范围内发生的特定类型的真实世界事件（例如，某个主要股指达到新高、特定地区发生地震、或者某个加密货币的价格突破特定阈值等）。当这些预设的事件发生时，平台会触发一次“幸运空投”，通过可验证的随机方式向在不同链上注册的合格用户分发一定数量的平台代币或合作伙伴代币。
+Here's the English translation of the project requirements:
 
-如何运用 Chainlink 服务：
+The platform monitors specific types of real-world events globally (e.g., a major stock index reaching a new high, an earthquake occurring in a specific region, or a cryptocurrency price breaking through a specific threshold). When these preset events occur, the platform triggers a "lucky airdrop," distributing a certain amount of platform tokens or partner tokens to qualified users across different chains through a verifiable random method.
 
-1. Chainlink Functions :
-   
-   - 场景 ：需要可靠地监测和验证真实世界事件的发生。
-   - 应用 ：
-     - 事件监测 ：配置 Chainlink Functions 定期或按需调用外部 API（例如，金融数据 API、地震监测 API、加密货币价格 API 等）来检查预设的触发事件是否发生。
-     - 数据验证与处理 ：Functions 可以从多个数据源获取信息进行交叉验证，确保事件的真实性。例如，确认股指是否真的创下新高，或者地震的震级是否达到预设标准。
-     - 触发信号上报 ：一旦验证事件发生，Functions 会向主链上的智能合约发送一个安全的触发信号，启动空投流程。
-2. Chainlink VRF (可验证随机函数) :
-   
-   - 场景 ：在事件触发空投后，需要公平、透明地从合格用户中抽取获奖者，并可能随机确定空投的代币数量。
-   - 应用 ：
-     - 随机抽取获奖用户 ：从所有在平台注册并满足特定条件（例如，持有一定数量的平台代币、在特定时间段内有活动等）的用户列表中，使用 VRF 随机抽取一定数量的幸运用户获得空投。
-     - 随机化空投数量 ：可以设计不同等级的空投奖励，获奖用户通过 VRF 随机获得不同数量的代币，增加趣味性。
-     - 保证公平性 ：VRF 的可验证性确保了抽奖过程的透明和不可操纵，增强用户信任。
-3. Chainlink CCIP (跨链互操作协议) :
-   
-   - 场景 ：平台用户可能分布在多个不同的区块链网络上，空投的代币也可能需要在不同链之间流转或分发到用户所在的链。
-   - 应用 ：
-     - 跨链用户注册/资格验证 ：用户可以在他们常用的链上进行注册，CCIP 可以帮助主链合约验证用户在其他链上的资产持有情况或活动记录，以确定其空投资格。
-     - 跨链代币分发 ：当空投获奖者确定后，如果获奖用户位于与主链不同的链上，CCIP 可以安全地将空投代币（无论是平台原生代币还是合作伙伴代币）从主链（或代币发行链）桥接到用户所在的链，并分发到他们的钱包地址。
-     - 跨链治理参与 ：如果平台有治理机制，CCIP 可以让不同链上的代币持有者参与关于空投规则、触发事件类型等方面的治理投票。
-项目流程概要：
+How to utilize Chainlink services:
 
-1. 事件与空投规则设定 ：平台管理员或通过社区治理设定触发空投的真实世界事件类型、条件、空投代币种类与总量、获奖者数量、随机化规则等。
-2. 用户注册与资格积累 ：用户在平台上（可跨链）注册，并根据平台规则积累参与空投的资格（例如，质押代币、完成任务、保持活跃等）。
-3. 事件监测与触发 (Chainlink Functions) ：
-   - Chainlink Functions 持续监测预设的外部事件。
-   - 当事件发生并被验证后，Functions 向主链合约发送触发信号。
-4. 幸运用户抽取与奖励确定 (Chainlink VRF) ：
-   - 主链合约收到触发信号后，调用 Chainlink VRF。
-   - VRF 从合格用户池中随机抽取获奖者，并可能根据规则随机确定每个获奖者的奖励等级或数量。
-5. 代币分发 (Chainlink CCIP) ：
-   - 智能合约根据 VRF 的结果，确定最终的获奖名单和奖励。
-   - 如果获奖用户在其他链，CCIP 负责将代币安全地跨链转移并分发到获奖用户的钱包。
-6. 结果公示 ：空投结果（包括触发事件、获奖用户、随机过程验证链接等）在平台上公示，确保透明度。
-潜在价值与吸引力：
+Chainlink Functions:
 
-- 趣味性与参与感 ：将真实世界事件与随机空投结合，增加了项目的趣味性和用户的参与热情。
-- 公平透明 ：Chainlink VRF 保证了抽奖的公平性，提升用户信任。
-- 跨链可达性 ：Chainlink CCIP 使得更广泛的用户群体可以参与，不受限于单一区块链。
-- 社区驱动 ：可以通过 DAO 治理来决定监测哪些事件、如何分配奖励等，增强社区粘性。
-- 营销与合作潜力 ：可以与其他项目合作，将其代币作为空投奖励，或将其项目的关键事件作为触发条件，实现双赢。
-这个方案充分利用了 Chainlink 各个组件的优势，构建了一个动态、公平且具有广泛吸引力的随机发币应用。设计时需要仔细考虑经济模型、安全性以及用户体验。
+Scenario: Need to reliably monitor and verify real-world events.
+Applications:
+
+- Event Monitoring: Configure Chainlink Functions to periodically or on-demand call external APIs (e.g., financial data APIs, earthquake monitoring APIs, cryptocurrency price APIs) to check if preset trigger events have occurred.
+- Data Validation and Processing: Functions can obtain information from multiple data sources for cross-validation to ensure event authenticity. For example, confirming whether a stock index has truly reached a new high or if an earthquake's magnitude meets preset criteria.
+- Trigger Signal Reporting: Once an event is verified, Functions sends a secure trigger signal to the smart contract on the main chain to initiate the airdrop process.
+Chainlink VRF (Verifiable Random Function):
+
+Scenario: After an event triggers an airdrop, need to fairly and transparently select winners from qualified users and potentially determine random token amounts.
+Applications:
+
+- Random Winner Selection: Use VRF to randomly select a certain number of lucky users from all registered users who meet specific conditions (e.g., holding a certain amount of platform tokens, being active within a specific timeframe).
+- Randomized Airdrop Amounts: Design different levels of airdrop rewards, with winning users randomly receiving different amounts of tokens through VRF, adding excitement.
+- Ensuring Fairness: VRF's verifiability ensures transparency and non-manipulation of the lottery process, enhancing user trust.
+Chainlink CCIP (Cross-Chain Interoperability Protocol):
+
+Scenario: Platform users may be distributed across multiple blockchain networks, and airdropped tokens may need to be transferred between chains or distributed to users' chains.
+Applications:
+
+- Cross-Chain User Registration/Eligibility Verification: Users can register on their preferred chain, and CCIP helps the main chain contract verify users' asset holdings or activity records on other chains to determine airdrop eligibility.
+- Cross-Chain Token Distribution: When airdrop winners are determined, if winning users are on different chains than the main chain, CCIP can safely bridge airdrop tokens (whether platform native tokens or partner tokens) from the main chain (or token issuance chain) to the users' chains and distribute them to their wallet addresses.
+- Cross-Chain Governance Participation: If the platform has governance mechanisms, CCIP allows token holders on different chains to participate in governance voting regarding airdrop rules, trigger event types, etc.
+Project Process Overview:
+
+1. Event and Airdrop Rule Setting:
+- Platform administrators or community governance set the types and conditions of real-world events that trigger airdrops, token types and total amounts, number of winners, randomization rules, etc.
+2. User Registration and Eligibility Accumulation:
+- Users register on the platform (cross-chain) and accumulate airdrop eligibility according to platform rules (e.g., staking tokens, completing tasks, maintaining activity).
+3. Event Monitoring and Triggering (Chainlink Functions):
+- Chainlink Functions continuously monitor preset external events.
+- When events occur and are verified, Functions sends trigger signals to the main chain contract.
+4. Lucky User Selection and Reward Determination (Chainlink VRF):
+- Main chain contract receives trigger signal and calls Chainlink VRF.
+- VRF randomly selects winners from the qualified user pool and may randomly determine reward levels or amounts for each winner according to rules.
+5. Token Distribution (Chainlink CCIP):
+- Smart contract determines final winner list and rewards based on VRF results.
+- If winning users are on other chains, CCIP handles secure cross-chain transfer and distribution of tokens to winners' wallets.
+6. Result Publication:
+- Airdrop results (including trigger events, winning users, random process verification links) are published on the platform for transparency.
+Potential Value and Appeal:
+
+- Fun and Engagement: Combining real-world events with random airdrops increases project excitement and user participation enthusiasm.
+- Fair and Transparent: Chainlink VRF ensures lottery fairness, enhancing user trust.
+- Cross-Chain Accessibility: Chainlink CCIP enables broader user group participation, unrestricted by single blockchain.
+- Community-Driven: Can use DAO governance to decide which events to monitor, how to allocate rewards, etc., strengthening community cohesion.
+- Marketing and Partnership Potential: Can collaborate with other projects to use their tokens as airdrop rewards or their key events as trigger conditions, achieving win-win outcomes.
+This solution fully leverages the advantages of various Chainlink components to build a dynamic, fair, and broadly appealing random token distribution application. Design needs careful consideration of economic models, security, and user experience.
