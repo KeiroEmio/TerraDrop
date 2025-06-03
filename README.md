@@ -1,5 +1,3 @@
-Here's the English translation of the project requirements:
-
 The platform monitors specific types of real-world events globally (e.g., a major stock index reaching a new high, an earthquake occurring in a specific region, or a cryptocurrency price breaking through a specific threshold). When these preset events occur, the platform triggers a "lucky airdrop," distributing a certain amount of platform tokens or partner tokens to qualified users across different chains through a verifiable random method.
 
 How to utilize Chainlink services:
