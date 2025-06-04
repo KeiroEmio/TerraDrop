@@ -57,7 +57,7 @@ contract TerraDrop is VRFConsumerBaseV2, ConfirmedOwner { // 根据需要继承
     //     _;
     // }
 
-    modifier onlyFunctionsOracle() { // 用于限制 Chainlink Functions 的调用
+    modifier onlyFunctionsOracle() { 
         require(msg.sender == functionsOracle, "Caller is not the Functions Oracle");
         _;
     }
